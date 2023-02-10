@@ -273,7 +273,7 @@
                 <h1 class="display-6 text-black text-center" style="font-weight: bold">Solicite informações sobre preços e promoções <span class="text-white">especiais</span> abaixo:</h1>
             </div>
             <div class="container">
-                <form action="">
+                <form action="" id="FrmContato">
                     <div class="row my-3">
                         <div class="col-12 col-lg-6 py-2">
                             <input class="form-control form-control-lg" type="text" name="name" placeholder="Nome Completo" aria-label=".form-control-lg example">
@@ -394,6 +394,53 @@
 
 @endsection
 @push('plugin-scripts')
+    <script src="{{ url("js/jquery-validation/jquery.validate.min.js") }}"></script>
+    <script>
+
+        $("#FrmContato").validate({
+            rules: {
+                name: "required",
+                email: "required",
+                event: "required",
+                locale: "required",
+            },
+            messages: {
+                nome: "Insira o seu nome completo",
+                email: "Insira um email valido",
+                event: "Insira o tipo do evento",
+                locale: "Insira a localização do evento",
+            },
+
+            errorPlacement: function (label, element) {
+                label.addClass('mt-2 text-danger');
+                label.insertAfter(element);
+            },
+            highlight: function (element, errorClass) {
+                $(element).parent().addClass('has-danger')
+                $(element).addClass('form-control-danger')
+            },
+            submitHandler: function (form, event) {
+                event.preventDefault();
+                var form = $(form);
+                var url = form.attr("action");
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: form.serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.split(';')[0] === "1") {
+                            document.getElementById('formEmail').reset();
+                            showToastSuccess(data.split(';')[1])
+                        } else {
+                            showToastDanger(data.split(';')[1])
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 
     <script>
         const myCarouselElement  = document.querySelector('#myCarousel')

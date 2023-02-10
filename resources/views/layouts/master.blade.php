@@ -186,6 +186,9 @@
 <script src="{{url('vendors/js/vendor.bundle.base.js')}}"></script>
 <script src="{{url('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{url('vendors/jquery-toast-plugin/jquery.toast.min.js')}}"></script>
+
+
+
 @stack('plugin-scripts')
 
 @stack('custom-scripts')

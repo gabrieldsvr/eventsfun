@@ -82,6 +82,7 @@
     </div>
 
 {{--trio de imagens--}}
+{{--trio de imagens--}}
     <div class="container-fluid">
         <div class="row">
             <div class="p-0 col-12 col-md-6 col-lg-4 bg-danger thumb">

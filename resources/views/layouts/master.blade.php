@@ -176,6 +176,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
           integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="<?= url("css/jquery-toast-plugin/jquery.toast.min.css") ?>">
+
 </head>
 <body class="" data-bs-theme="dark">
 
@@ -192,5 +194,9 @@
 @stack('plugin-scripts')
 
 @stack('custom-scripts')
+
+<script src="<?= url("css/jquery-toast-plugin/jquery.toast.min.js") ?>"></script>
+
+
 </body>
 </html>

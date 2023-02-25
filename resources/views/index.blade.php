@@ -273,7 +273,8 @@
                 <h1 class="display-6 text-black text-center" style="font-weight: bold">Solicite informações sobre preços e promoções <span class="text-white">especiais</span> abaixo:</h1>
             </div>
             <div class="container">
-                <form action="" id="FrmContato">
+                <form action="{{route('emails.orcamento')}}" method="POST" id="FrmContato">
+                    @csrf
                     <div class="row my-3">
                         <div class="col-12 col-lg-6 py-2">
                             <input class="form-control form-control-lg" type="text" name="name" placeholder="Nome Completo" aria-label=".form-control-lg example">
@@ -281,17 +282,20 @@
                         <div class="col-12 col-lg-6 py-2">
                             <input class="form-control form-control-lg" name="email" type="email" placeholder="Email" aria-label="email">
                         </div>
+                        <div class="col-12 col-lg-6 py-2">
+                            <input class="form-control form-control-lg" name="phone" type="text" placeholder="Telefone" aria-label="telefone">
+                        </div>
                     </div>
+                    <hr>
                     <div class="row my-3">
                         <div class=" col-12">
-                            <label for="evento" class="text-white my-2 " style="font-weight: bold; font-size: 20px">Tipo do evento</label>
-                            <select class="form-select" name="event" id="evento" aria-label="Tipo de evento">
-                                <option selected>Open this select menu</option>
-                                <option value="1">Casamento</option>
-                                <option value="2">15 anos</option>
-                                <option value="3">Aniversários</option>
-                                <option value="4">Eventos corporativos</option>
-                                <option value="5">Outros</option>
+                            <select class=" form-select col-12" name="event" id="evento" aria-label="Tipo de evento">
+                                <option selected>Qual o tipo do evento?</option>
+                                <option value="Casamento">Casamento</option>
+                                <option value="15 Anos">15 Anos</option>
+                                <option value="aniversario">Aniversários</option>
+                                <option value="evento corporativo">Eventos corporativos</option>
+                                <option value="outros">Outros</option>
                             </select>
 
                         </div>
@@ -301,32 +305,30 @@
                             <input class="form-control form-control-lg" name="date" type="date" placeholder="Data do evento" aria-label="Data do evento">
                         </div>
                         <div class="col-12 col-lg-6 py-2">
-                            <input class="form-control form-control-lg" name="hours" type="text" placeholder="Quantas horas?" aria-label="Aluguel por quantas horas">
+                            <input class="form-control form-control-lg" name="hours" type="text" placeholder="Quantas horas de evento?" aria-label="Aluguel por quantas horas">
                         </div>
                     </div>
                     <div class="row my-3">
                         <div class=" col-12">
-                            <input class="form-control form-control-lg" name="locale" type="text" placeholder="Localização" aria-label="localizacao">
+                            <input class="form-control form-control-lg" name="locale" type="text" placeholder="Localização" aria-label="Local do evento">
                         </div>
                     </div>
                     <div class="row my-3">
                         <div class=" col-12">
-                            <textarea  class="col-12 py-2 form-control" name="message" id="message" cols="30" rows="10"></textarea>
+                            <textarea  class="col-12 py-2 form-control" name="message" id="message" cols="30" rows="10" placeholder="Escreva sua mensagem aqui."></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 text-center">
-                            <div class="btn btn-lg btn-dark" style="font-family: 'Bebas Neue', cursive; font-size: 24px">
+                            <button class="btn btn-lg btn-dark" style="font-family: 'Bebas Neue', cursive; font-size: 24px">
                                 ENVIAR!
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-
 {{--footer--}}
  <footer>
      <div class="container-fluid bg-black">
@@ -396,13 +398,56 @@
      </div>
 
  </footer>
-
-
-
 @endsection
 @push('plugin-scripts')
     <script src="{{ url("js/jquery-validation/jquery.validate.min.js") }}"></script>
     <script>
+        resetToastPosition = function () {
+            $('.jq-toast-wrap').removeClass('bottom-left bottom-right top-left top-right mid-center'); // to remove previous position class
+            $(".jq-toast-wrap").css({
+                "top": "",
+                "left": "",
+                "bottom": "",
+                "right": ""
+            });
+
+        };
+        showDangerToast = function() {
+            'use strict';
+            resetToastPosition();
+            $.toast({
+                heading: 'Erro!',
+                text: 'Ocorreu um erro inesperado no envio da mensagem',
+                showHideTransition: 'slide',
+                icon: 'error',
+                loaderBg: '#f2a654',
+                position: 'top-right'
+            })
+        };
+        showSuccessToast = function() {
+            'use strict';
+            resetToastPosition();
+            $.toast({
+                heading: 'Sucesso!',
+                text: 'Mensagem enviada com sucesso!',
+                showHideTransition: 'slide',
+                icon: 'success',
+                loaderBg: '#f96868',
+                position: 'top-right'
+            })
+        };
+        showInfoToast = function() {
+            'use strict';
+            resetToastPosition();
+            $.toast({
+                heading: 'Atenção...',
+                text: 'Enviando sua mensagem.',
+                showHideTransition: 'slide',
+                icon: 'info',
+                loaderBg: '#46c35f',
+                position: 'top-right'
+            })
+        };
 
         $("#FrmContato").validate({
             rules: {
@@ -410,16 +455,17 @@
                 email: "required",
                 event: "required",
                 locale: "required",
+                phone: "required",
                 message: "required",
             },
             messages: {
-                nome: "Insira o seu nome completo",
+                name: "Insira o seu nome completo",
                 email: "Insira um email valido",
                 event: "Insira o tipo do evento",
                 locale: "Insira a localização do evento",
+                phone: "Digite seu telefone",
                 message: "Insira suas dúvidas",
             },
-
             errorPlacement: function (label, element) {
                 label.addClass('mt-2 text-danger');
                 label.insertAfter(element);
@@ -437,13 +483,16 @@
                     url: url,
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: form.serialize(),
-                    dataType: 'json',
+                    beforeSend: function (data) {
+                        showInfoToast();
+                    },
                     success: function (data) {
+                        console.log("data" + data)
                         if (data.split(';')[0] === "1") {
-                            document.getElementById('formEmail').reset();
-                            showToastSuccess(data.split(';')[1])
+                            document.getElementById('FrmContato').reset();
+                            showSuccessToast()
                         } else {
-                            showToastDanger(data.split(';')[1])
+                            showDangerToast()
                         }
                     }
                 });

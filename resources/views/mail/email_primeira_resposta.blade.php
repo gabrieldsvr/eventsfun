@@ -21,7 +21,7 @@ $date = new DateTime('now')
         </tr>
         <tr>
             <td style="padding-top: 20px; padding-left: 20px">
-                <h6>Gabrieldsvr</h6>
+                <h4 style="color: #fdc007">4FUN Eventos</h4>
                 <p style="font-family: Roboto;font-size: 13px;font-weight: 500;font-style:
                                   normal;font-stretch: normal;line-height: normal;letter-spacing: normal;color:
                                   #bbb;float:right;margin-top: 10px; padding-right: 20px"><?= $date->format('d/m/Y')?></p>
@@ -29,15 +29,13 @@ $date = new DateTime('now')
         </tr>
         <tr>
             <td style="border-radius: 10px;background: #fff;padding: 30px 60px 20px 60px;margin-top: 10px;display: block;">
-                <p style="font-family: Roboto;font-size: 18px;font-weight: 500;font-style: normal;font-stretch: normal;line-height: 1.11;letter-spacing: normal;color: #2b80ff;"><?=$data->subject?></p>
+                <p style="font-family: Roboto;font-size: 18px;font-weight: 500;font-style: normal;font-stretch: normal;line-height: 1.11;letter-spacing: normal;color: #fdc007;">PEDIDO DE ORÇAMENTO RECEBIDO</p>
                 <p style="font-family: Roboto;font-size: 14px;font-weight: 500;font-style:
-                                  normal;font-stretch: normal;line-height: 1.71;letter-spacing: normal;color: #001737;margin-bottom: 10px;"><?=$data->nome?></p>
+                                  normal;font-stretch: normal;line-height: 1.71;letter-spacing: normal;color: #001737;margin-bottom: 10px;"><?=$data->getName()?></p>
                 <p style="font-family: Roboto;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.71;letter-spacing: normal;color: #001737;">
-                    Obrigado por entrar em contato! Nossa equipe ira responder o quanto antes sua mensagem para
-                    começarmos a tratar com você.</p>
+                    Obrigado por entrar em contato! Nossa equipe fará o possível para fornecer-lhe um orçamento o mais rápido possível, geralmente dentro de 24 horas úteis.</p>
                 <p style="font-family: Roboto;font-size: 14px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 1.71;letter-spacing: normal;color: #bbbbbb;">
-                    Este é um e-mail gerado automaticamente. Não responda a este e-mail. Se você enfrentar algum
-                    problema, entre em contato conosco em contato@gabrieldsvr.com.br</p>
+                    Este é um e-mail gerado automaticamente. Não responda a este e-mail. Se você enfrentar algum problema, entre em contato conosco em contato.4funeventos@gmail.com</p>
             </td>
         </tr>
         </tbody>

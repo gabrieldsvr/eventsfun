@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::resources([
-    'emails' => EmailsController::class,
-]);
-
 
 Route::get('/', array(WebController::class, 'index'))->name('index');
+Route::post('/orcamento', array(EmailsController::class, 'pedeOrcamento'))->name('emails.orcamento');

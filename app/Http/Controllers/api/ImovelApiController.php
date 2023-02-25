@@ -4,8 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ImovelResource;
-use App\Models\Imovel;
-use Illuminate\Support\Facades\DB;
+use App\Models\forms\Imovel;
 
 class ImovelApiController extends Controller
 {

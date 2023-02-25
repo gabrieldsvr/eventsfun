@@ -18,19 +18,40 @@ $date = new DateTime('now')
         <tbody>
         <tr>
             <td>Nome</td>
-            <td><?=$data->nome?></td>
+            <td><?=$data->getName()?></td>
         </tr>
         <tr>
             <td>Email</td>
-            <td><?=$data->email?></td>
+            <td><?=$data->getEmail()?></td>
         </tr>
+
         <tr>
             <td>Telefone</td>
-            <td><?=$data->phone ?></td>
+            <td><?=$data->getPhone()?></td>
+        </tr>
+
+        <tr>
+            <td>Tipo do evento</td>
+            <td><?=$data->getEvent()?></td>
         </tr>
         <tr>
+            <td>Data</td>
+            <td><?=$data->getDate()?></td>
+        </tr>
+
+        <tr>
+            <td>Horas</td>
+            <td><?=$data->getHours()?></td>
+        </tr>
+
+        <tr>
+            <td>Local</td>
+            <td><?=$data->getLocale()?></td>
+        </tr>
+
+        <tr>
             <td>Mensagem</td>
-            <td><?=$data->body?></td>
+            <td><?=$data->getMessage()?></td>
         </tr>
         </tbody>
     </table>

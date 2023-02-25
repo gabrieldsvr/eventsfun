@@ -4,9 +4,9 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CursosResource;
-use App\Models\Alunos;
-use App\Models\Cursos;
-use App\Models\Funnel;
+use App\Models\forms\Alunos;
+use App\Models\forms\Cursos;
+use App\Models\forms\Funnel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

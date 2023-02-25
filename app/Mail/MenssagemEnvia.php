@@ -2,26 +2,26 @@
 
 namespace App\Mail;
 
+use App\Models\forms\Contato;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class mailRecebeOrcamento extends Mailable
+class MenssagemEnvia extends Mailable
 {
     use Queueable, SerializesModels;
+    private $data;
 
-    private $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(\stdClass $user)
+    public function __construct(Contato $data)
     {
-        $this->user = $user;
+        $this->data = $data;
     }
-
     /**
      * Build the message.
      *
@@ -29,8 +29,8 @@ class mailRecebeOrcamento extends Mailable
      */
     public function build()
     {
-        $this->subject($this->user->subject);
-        $this->to("contato@gabrieldsvr.com.br", "contato via site - ".$this->user->nome);
-        return $this->view('mail.email_recebimento',['data' => $this->user]);
+        $this->subject("ORÇAMENTO");
+        $this->to($this->data->getEmail(), "Automático");
+        return $this->view('mail.email_primeira_resposta', ['data' => $this->data]);
     }
 }

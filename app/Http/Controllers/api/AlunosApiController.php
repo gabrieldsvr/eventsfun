@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AlunosResource;
-use App\Models\Alunos;
+use App\Models\forms\Alunos;
 
 class AlunosApiController extends Controller
 {

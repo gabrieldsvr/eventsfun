@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PageType;
+use App\Models\forms\PageType;
 
 class WebController extends Controller
 {

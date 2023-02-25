@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TurmasResource;
-use App\Models\Turmas;
+use App\Models\forms\Turmas;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
